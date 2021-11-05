@@ -90,8 +90,8 @@ struct rational div_rational(struct rational a, struct rational b)
 
 int main(void)
 {
-	struct rational a = make_rational(4, 8);/* a=1/8 */
-	struct rational b = make_rational(-2, -8);/* b=-1/8 */
+	struct rational a = make_rational(4, 8);/* a=1/2 */
+	struct rational b = make_rational(-2, -8);/* b=1/4 */
 	print_rational(a);
 	print_rational(b);
 	print_rational(add_rational(a, b));
