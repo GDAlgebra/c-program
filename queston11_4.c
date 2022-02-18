@@ -1,6 +1,6 @@
-/*´Óa[start..end]ÖĞÑ¡È¡Ò»¸öpivotÔªËØ£¨±ÈÈçÑ¡a[start]Îªpivot£©;
-ÔÚÒ»¸öÑ­»·ÖĞÒÆ¶¯a[start..end]µÄÊı¾İ£¬½«a[start..end]·Ö³ÉÁ½°ë£¬
-	Ê¹a[start..mid - 1]±ÈpivotÔªËØĞ¡£¬a[mid + 1..end]±ÈpivotÔªËØ´ó£¬¶øa[mid]¾ÍÊÇpivotÔªËØ;*/
+/*ä»a[start..end]ä¸­é€‰å–ä¸€ä¸ªpivotå…ƒç´ ï¼ˆæ¯”å¦‚é€‰a[start]ä¸ºpivotï¼‰;
+åœ¨ä¸€ä¸ªå¾ªç¯ä¸­ç§»åŠ¨a[start..end]çš„æ•°æ®ï¼Œå°†a[start..end]åˆ†æˆä¸¤åŠï¼Œ
+	ä½¿a[start..mid - 1]æ¯”pivotå…ƒç´ å°ï¼Œa[mid + 1..end]æ¯”pivotå…ƒç´ å¤§ï¼Œè€Œa[mid]å°±æ˜¯pivotå…ƒç´ ;*/
 #include <stdio.h>
 
 #define LEN 8
@@ -41,4 +41,27 @@ int main(void)
 	for (int i = 0; i < LEN; i++)
 		printf("%d,", a[i]);
 	return 0;
+}
+// This is not the correct code for quicksort, the correct code is as followed.
+int* Quicksort(int* array, int arraysize) {
+    if (arraysize < 1) {
+        return array;
+    }
+    int* start = array, * end = array + arraysize - 1, mid = *array, temp = *(array + 1);
+    while (start != end) {
+        if (temp < mid) {
+            *start = temp;
+            start++;
+            temp = *(start + 1);
+        }
+        else {
+            *start = temp;
+            temp = *end;
+            *end = *start;
+            end--;
+        }
+    }
+    *start = mid;
+    Quicksort(array, start - array);
+    Quicksort(array + (start - array) + 1, arraysize - (start - array) - 1);
 }
